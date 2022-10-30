@@ -6,9 +6,7 @@ then
 	exit 1
 fi
 username=$1
-echo $username
 password=$2
-echo $password
 artifactLink=$(curl -u $username:$password -X GET 'http://0.0.0.0:8081/service/rest/v1/components?repository=maven-repo-2&sort=version' | jq '.items[].assets[].downloadUrl' --raw-output | grep ".jar$")
 wget --http-user $username --http-password $password $artifactLink
 app=$(ls)
